@@ -1,0 +1,11 @@
+sent2vec
+textacy
+sklearn
+tweepy==3.8.0
+spacy
+scipy
+numpy
+tqdm
+pymongo
+feedparser
+
