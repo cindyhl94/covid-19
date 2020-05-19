@@ -1,12 +1,31 @@
-model_save_path = "models/"
+import glob
+import logging
+import logging.handlers
+import sys
+import traceback
 
-datasets_path = {
-
-    "biorxiv_medrxiv" : "datasets/2020-03-13/biorxiv_medrxiv/biorxiv_medrxiv/",
-    "pmc_custom_license": "datasets/2020-03-13/pmc_custom_license/pmc_custom_license/",
-    "comm_use_subset" : "datasets/2020-03-13/comm_use_subset/comm_use_subset/",
-    "noncomm_use_subset" : "datasets/2020-03-13/noncomm_use_subset/noncomm_use_subset/"
+db_info1 = {
+    'db' : 'content',
+    'coll' : 'articles13'
 }
 
 
+logfile = "data.log"
+data_logger = logging.getLogger('root')
+data_logger.setLevel(10)
+FORMAT = "%(levelname)s:%(asctime)s:[%(filename)s:%(lineno)s - %(funcName)s() ] %(message)s"
+handler = logging.handlers.RotatingFileHandler(
+              logfile, maxBytes = 10000000, backupCount = 0)
 
+formatter = logging.Formatter(FORMAT)
+handler.setFormatter(formatter)
+
+data_logger.addHandler(handler)
+data_logger.disabled = False
+
+#FIRESTORE_SERVICE_ACCOUNT_JSON="src/common/qbit-stats-firebase-adminsdk-2t0h4-f131c35cb7.json"
+#FIRESTORE_SERVICE_ACCOUNT_JSON="src/common/smackd-219314-b4a65df32a70.json"
+
+coll = "news"
+uri = "mongodb://localhost:53065/"
+db_name = "qbit"
